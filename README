@@ -1,0 +1,34 @@
+gXML - good? XML
+(not google!)
+
+Kenneth Miller - xkenneth@gmail.com
+	       	 www.xkenneth.com
+
+gXML is an XML toolkit abstraction for the different XML toolkits available in python. The goal of this abstraction is
+to be able to work with XML regardless of which library is present on the system, while maintaing a very pythonic experience.
+
+gXML currently supports:
+
+elementtree
+minidom
+
+in that order of preference.
+
+It supports just about every valid XML operation you might want to do.
+
+There is currently no support for XPath.
+
+The module currently needs a mechanism for setting user preferences of various toolkits.
+
+Files:
+README - ;)
+base.py - Defines the base class from which all apis inherit. Defines things common to all apis.
+dev.py - Run me to fiddle around.
+elemtree.py - The elementtree api
+minidom.py - The minidom api
+test.py - Unit testing.
+test.xml - XML for unit testing. DON'T TOUCH!
+gxml.py - The main module that handles selecting which api to import based off of availability and preference.
+
+Please feel free to email me for help and if you have any questions. (My email can be found at the top of this document.)
+
