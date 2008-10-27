@@ -66,6 +66,10 @@ class elemtree(node):
     #set an attribute
     set = property( lambda obj: obj.node.set )
 
+    def remove_attr(self,attribute):
+        """Remove an attribute."""
+        return self.node.attrib.pop(attribute)
+
     def set_text(self,text):
         self.node.text = text
 

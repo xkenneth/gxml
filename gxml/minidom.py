@@ -84,6 +84,13 @@ class minidom(node):
         """Set the value of an attribute."""
         self.node.setAttribute(attribute,value)
 
+    def remove_attr(self,attribute):
+        """Remove an attribute."""
+        save = self.get(attribute)
+        self.node.removeAttribute(attribute)
+        return save
+    
+
     def get_text(self):
         """Get the nodes text."""
         return self.node.childNodes[0].wholeText
