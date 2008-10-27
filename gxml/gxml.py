@@ -34,4 +34,4 @@ if not gxml:
 
 def clone(node):
     t = gxml()
-    t.from_string(tostring(node))
+    return t.from_string(tostring(node))
