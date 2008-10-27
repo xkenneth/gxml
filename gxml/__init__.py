@@ -1,1 +1,1 @@
-from gxml import gxml, Element, tostring
+from gxml import gxml, Element, tostring, clone

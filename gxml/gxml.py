@@ -31,3 +31,7 @@ except ImportError:
 
 if not gxml:
     raise ImportError("No Supported XML library found!")
+
+def clone(node):
+    t = gxml()
+    t.from_string(tostring(node))

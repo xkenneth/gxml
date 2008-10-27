@@ -18,3 +18,14 @@ class node(object):
 
     def __repr__(self):
         return "gXML <%s>" % self.tag
+
+    def __eq__(self,other):
+        """Test if two nodes are equal."""
+        #if the nodes aren't equal, the respective toolkits should handle overloading this operator
+        if self.node != other.node:
+            return False
+
+    def __ne__(self,other):
+        """Test if two nodes are not equal."""
+        return not self == other
+        
