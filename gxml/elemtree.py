@@ -56,6 +56,8 @@ class elemtree(node):
 
     #a list of the child nodes
     child_nodes = property(get_child_nodes)
+
+    keys = property( lambda obj: obj.node.keys )
     
     #the tag of the node
     tag = property( lambda obj: obj.node.tag )

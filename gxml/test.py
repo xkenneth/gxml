@@ -81,6 +81,11 @@ for api in gxml.available_apis:
             self.a.set('this','that')
             self.a.remove_attr('this')
             self.failUnlessEqual(self.a.get('this'),None)
+
+        def test_get_keys(self):
+            self.a.set('this','that')
+            self.a.set('a','b')
+            self.failUnlessEqual(self.a.keys(),['this','a'])
             
             
     exec("class %sParseTestCase(APIParseTestCase,unittest.TestCase): pass" % api.__name__)

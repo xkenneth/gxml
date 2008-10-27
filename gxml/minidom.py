@@ -65,6 +65,8 @@ class minidom(node):
     
     child_nodes = property(get_child_nodes)
 
+    keys = property( lambda obj: obj.node.attributes.keys )
+
     def get_tag(self):
         """Get the nodes tag."""
         return self.node.nodeName
