@@ -6,7 +6,7 @@ setup(
 
     author = "Kenneth Miller",
     author_email = "xkenneth@gmail.com",
-    description = "A good XML abstraction.",
     keywords = "python xml elementtree lxml minidom",
     url = "http://www.xkenneth.com/gxml",
+    description = """A Good XML Abstraction. Provides a common interface to popular XML libaries. Currently supports elementree and minidom.""",
 )

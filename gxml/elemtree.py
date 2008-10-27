@@ -13,11 +13,11 @@ def tostring(node,pretty_print=False):
 class elemtree(node):
     """An abstract XML API for elementetree"""
 
-    def __repr__(self):
-        try:
-            return "<%s>" % self.tag
-        except AttributeError:
-            return "gXML instance(elemtree)"
+    # def __repr__(self):
+#         try:
+#             return "<%s>" % self.tag
+#         except AttributeError:
+#             return "gXML instance(elemtree)"
 
     def from_string(self,xml_str):
         """Parse a string."""

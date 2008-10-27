@@ -15,3 +15,6 @@ class node(object):
         
     def __iter__(self):
         return self.child_nodes.__iter__()
+
+    def __repr__(self):
+        return "gXML <%s>" % self.tag

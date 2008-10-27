@@ -21,13 +21,13 @@ def tostring(node,pretty_print=False):
     
 
 class minidom(node):
-    def __repr__(self):
-        try:
-            return "<%s>" % self.node.nodeName
-        except AttributeError:
-            return 'gxml instance'
+    # def __repr__(self):
+#         try:
+#             return "<%s>" % self.node.nodeName
+#         except AttributeError:
+#             return 'gxml instance'
         
-        return self.__repr__()
+#         return self.__repr__()
         
     def from_string(self,xml_str):
         """Parse a string."""
