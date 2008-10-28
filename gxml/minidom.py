@@ -18,7 +18,9 @@ def tostring(node,pretty_print=False):
 
     return node.node.toxml()
 
-    
+def from_string(xml_str):
+    t = minidom()
+    return t.from_string(xml_str)
 
 class minidom(node):
     # def __repr__(self):
@@ -34,6 +36,7 @@ class minidom(node):
         self.node = xml.dom.minidom.parseString(xml_str).childNodes[0]
         
         return self
+
     def parse(self,file_object):
         """Parse a file object."""
         

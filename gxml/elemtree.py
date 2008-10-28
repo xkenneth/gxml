@@ -10,6 +10,10 @@ def Element(tag):
 def tostring(node,pretty_print=False):
     return et.tostring(node.node,pretty_print)
 
+def from_string(xml_str):
+    t = elemtree()
+    return t.from_string(xml_str)
+
 class elemtree(node):
     """An abstract XML API for elementetree"""
 

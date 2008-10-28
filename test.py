@@ -1,14 +1,13 @@
 import unittest
 import gxml
-import pdb
 
 test_suite = unittest.TestSuite()
 
 first = True
 
-for api in gxml.available_apis:
+for name, api in gxml.available_apis:
     
-    print "Setting up %s tests" % str(api.__name__) 
+    print "Setting up %s tests" % name
 
     class APIParseTestCase:
         def setUp(self):
@@ -88,13 +87,13 @@ for api in gxml.available_apis:
             self.failUnlessEqual(self.a.keys(),['this','a'])
             
             
-    exec("class %sParseTestCase(APIParseTestCase,unittest.TestCase): pass" % api.__name__)
-    exec("%sParseTestCase.api = %s" % (api.__name__, "api.%s" % api.__name__))
-    exec("%sParseTestCase.module = api" % api.__name__)
+    exec("class %sParseTestCase(APIParseTestCase,unittest.TestCase): pass" % name)
+    exec("%sParseTestCase.api = %s" % (name, api.__name__ + "." + api.__name__.split('.')[-1]))
+    exec("%sParseTestCase.module = api" % name)
 
-    exec("class %sCreateTestCase(APICreateTestCase,unittest.TestCase): pass" % api.__name__)
-    exec("%sCreateTestCase.api = %s" % (api.__name__, "api.%s" % api.__name__))
-    exec("%sCreateTestCase.module = api" % api.__name__)
+    exec("class %sCreateTestCase(APICreateTestCase,unittest.TestCase): pass" % name)
+    exec("%sCreateTestCase.api = %s" % (name, api.__name__ + "." + api.__name__.split('.')[-1]))
+    exec("%sCreateTestCase.module = api" % name)
 
     
 
