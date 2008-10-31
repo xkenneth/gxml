@@ -11,12 +11,12 @@ def Element(tag):
     """Creates an element with given tag."""
     return minidom(xml.dom.minidom.parseString("<%s/>"%tag).childNodes[0])
 
-def tostring(node,pretty_print=False):
+def to_string(node,pretty_print=False):
     """Turns an element tree into a string."""
     if pretty_print:
         return node.node.toprettyxml()
 
-    return node.node.toxml()
+    return str(node.node.toxml())
 
 def from_string(xml_str):
     t = minidom()
@@ -72,7 +72,7 @@ class minidom(node):
 
     def get_tag(self):
         """Get the nodes tag."""
-        return self.node.nodeName
+        return str(self.node.nodeName)
 
     tag = property(get_tag)
 
@@ -83,7 +83,7 @@ class minidom(node):
         if val == '': 
             return None
 
-        return val
+        return str(val)
 
     def set(self,attribute,value):
         """Set the value of an attribute."""
@@ -93,12 +93,19 @@ class minidom(node):
         """Remove an attribute."""
         save = self.get(attribute)
         self.node.removeAttribute(attribute)
-        return save
+        return str(save)
     
+    def get_tail(self):
+        if self.node.childNodes[-1].nodeName == u'#text' and self.node.childNodes[0] != self.node.childNodes[-1]:
+            return str(self.node.childNodes[-1].wholeText)
+
+    tail = property(get_tail)
+            
 
     def get_text(self):
         """Get the nodes text."""
-        return self.node.childNodes[0].wholeText
+        
+        return str(self.node.childNodes[0].wholeText)
     
     def set_text(self,text):
         """Set the text of the given node."""

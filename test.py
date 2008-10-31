@@ -34,6 +34,9 @@ for name, api in gxml.available_apis:
         def test_parse_string(self):
             self.failUnlessEqual(self.api().from_string("<a/>").tag,'a')
 
+        def test_basic_xpath(self):
+            print self.dom
+
     class APICreateTestCase:
         def setUp(self):
             self.a = self.module.Element('a')

@@ -7,7 +7,7 @@ import elementtree.ElementTree as et
 def Element(tag):
     return elemtree(et.Element(tag))
 
-def tostring(node,pretty_print=False):
+def to_string(node,pretty_print=False):
     return et.tostring(node.node,pretty_print)
 
 def from_string(xml_str):
@@ -22,6 +22,8 @@ class elemtree(node):
 #             return "<%s>" % self.tag
 #         except AttributeError:
 #             return "gXML instance(elemtree)"
+
+    tail = property( lambda obj: obj.node.tail )
 
     def from_string(self,xml_str):
         """Parse a string."""

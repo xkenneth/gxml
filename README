@@ -35,3 +35,8 @@ gxml/
 
 Please feel free to email me for help and if you have any questions. (My email can be found at the top of this document.)
 
+### Changelog
+0.4
+Added tails support, getting ready for inclusion of xpath.
+0.1 
+Base
