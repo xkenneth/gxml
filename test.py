@@ -35,7 +35,7 @@ for name, api in gxml.available_apis:
             self.failUnlessEqual(self.api().from_string("<a/>").tag,'a')
 
         def test_basic_xpath(self):
-            print self.dom
+            pass
 
     class APICreateTestCase:
         def setUp(self):
@@ -53,7 +53,7 @@ for name, api in gxml.available_apis:
 
         def test_print(self):
             a = self.module.Element('a')
-            self.module.tostring(a)
+            self.module.to_string(a)
 
         def test_assign_text(self):
             #try assiging it to a new element

@@ -1,5 +1,5 @@
 import xml.dom.minidom
-from base import node
+from base import tag_node
 import pdb
 
 def is_junk(node):
@@ -22,7 +22,7 @@ def from_string(xml_str):
     t = minidom()
     return t.from_string(xml_str)
 
-class minidom(node):
+class minidom(tag_node):
     # def __repr__(self):
 #         try:
 #             return "<%s>" % self.node.nodeName
@@ -149,4 +149,3 @@ if __name__ == '__main__':
     t.parse('test.xml')
     
     pdb.set_trace()
-        

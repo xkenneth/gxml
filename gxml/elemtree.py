@@ -1,5 +1,5 @@
 ### MODULE IMPORTS ###
-from base import node
+from base import tag_node
 
 ### LIBRARY IMPORTS ###
 import elementtree.ElementTree as et
@@ -14,7 +14,7 @@ def from_string(xml_str):
     t = elemtree()
     return t.from_string(xml_str)
 
-class elemtree(node):
+class elemtree(tag_node):
     """An abstract XML API for elementetree"""
 
     # def __repr__(self):

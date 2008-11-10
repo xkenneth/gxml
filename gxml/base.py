@@ -1,4 +1,4 @@
-class node(object):
+class tag_node(object):
     def __init__(self,node=None,parent=None):
         """A base class for all API Abstractions."""
         
@@ -20,9 +20,6 @@ class node(object):
     def __iter__(self):
         return self.child_nodes.__iter__()
 
-    def __repr__(self):
-        return "gXML <%s>" % self.tag
-
     def __eq__(self,other):
         """Test if two nodes are equal."""
         #if the nodes aren't equal, the respective toolkits should handle overloading this operator
@@ -32,3 +29,11 @@ class node(object):
     def __ne__(self,other):
         """Test if two nodes are not equal."""
         return not self == other
+
+#     def get(self,attribute):
+#         val = self.get_attribute(attribute)
+
+#         return attribute_node(val,self.parent)
+
+#     def set(self,attribute,value):
+#         self.set_attribute(attribute,value)
