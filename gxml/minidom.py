@@ -76,7 +76,7 @@ class minidom(tag_node):
 
     tag = property(get_tag)
 
-    def get(self,attribute):
+    def get_attribute(self,attribute):
         """Get the value of an attribute."""
         val = self.node.getAttribute(attribute)
 
@@ -85,7 +85,7 @@ class minidom(tag_node):
 
         return str(val)
 
-    def set(self,attribute,value):
+    def set_attribute(self,attribute,value):
         """Set the value of an attribute."""
         self.node.setAttribute(attribute,value)
 

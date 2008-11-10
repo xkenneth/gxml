@@ -30,10 +30,8 @@ class tag_node(object):
         """Test if two nodes are not equal."""
         return not self == other
 
-#     def get(self,attribute):
-#         val = self.get_attribute(attribute)
+    def get(self,attribute):
+        return self.get_attribute(attribute)
 
-#         return attribute_node(val,self.parent)
-
-#     def set(self,attribute,value):
-#         self.set_attribute(attribute,value)
+    def set(self,attribute,value):
+        self.set_attribute(attribute,value)

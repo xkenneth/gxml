@@ -69,10 +69,10 @@ class elemtree(tag_node):
     tag = property( lambda obj: obj.node.tag )
 
     #get an attribute
-    get = property( lambda obj: obj.node.get )
+    get_attribute = property( lambda obj: obj.node.get )
 
     #set an attribute
-    set = property( lambda obj: obj.node.set )
+    set_attribute = property( lambda obj: obj.node.set )
 
     def remove_attr(self,attribute):
         """Remove an attribute."""
