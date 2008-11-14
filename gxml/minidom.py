@@ -1,5 +1,6 @@
 import xml.dom.minidom
 from base import tag_node
+from helper import assemble
 import pdb
 
 def is_junk(node):
@@ -7,9 +8,9 @@ def is_junk(node):
     if node.nodeName == u'#text' or node.nodeName == u'#comment' or node.nodeName == u'#cdata-section':
         return True
 
-def Element(tag):
+def Element(tag,**kwargs):
     """Creates an element with given tag."""
-    return minidom(xml.dom.minidom.parseString("<%s/>"%tag).childNodes[0])
+    return minidom(xml.dom.minidom.parseString("<%s/>"%tag).childNodes[0],**kwargs)
 
 def to_string(node,pretty_print=False):
     """Turns an element tree into a string."""
@@ -35,7 +36,7 @@ class minidom(tag_node):
         """Parse a string."""
         self.node = xml.dom.minidom.parseString(xml_str).childNodes[0]
         
-        return self
+        return assemble(self,self.__class__)
 
     def parse(self,file_object):
         """Parse a file object."""
@@ -43,31 +44,19 @@ class minidom(tag_node):
         #parse it
         self.node = xml.dom.minidom.parse(file_object).childNodes[0]
 
-        return self
+        return assemble(self,self.__class__)
     
     def get_child_nodes(self):
         """Returns the child nodes of an object."""
-        #if they haven't changed since last time
-        if not self._child_nodes_changed:
-            return self.children
-        
         #if they have or we've never asked for them before
         children = []
         #find them
         for child in self.node.childNodes:
             if not is_junk(child):
-                children.append(self.__class__(child,self))
+                children.append(child)
 
-        #save them
-        self.children = children
-
-        #mark false until dirtied
-        self._child_nodes_changed = False
-        
-        return self.children
+        return children
     
-    child_nodes = property(get_child_nodes)
-
     keys = property( lambda obj: obj.node.attributes.keys )
 
     def get_tag(self):
@@ -133,14 +122,10 @@ class minidom(tag_node):
         
     text = property(get_text,set_text)
 
-    def append(self,node):
+    def append_node(self,node):
         """Append a child node."""
         #append the child
-        self.node.appendChild(node.node)
-
-        #mark it as dirty
-        self._child_nodes_changed = True
-        
+        self.node.appendChild(node)        
 
 if __name__ == '__main__':
     import pdb

@@ -36,12 +36,39 @@ for name, api in gxml.available_apis:
         def test_basic_xpath(self):
             pass
 
+        def test_get_next(self):
+            self.failUnless(self.dom.child_nodes[0].getnext() is self.dom.child_nodes[1])
+            self.failUnless(self.dom.child_nodes[1].getnext() is self.dom.child_nodes[2])
+            self.failUnless(self.dom.child_nodes[2].getnext() is self.dom.child_nodes[0])
+
+        def test_get_next(self):
+            self.failUnless(self.dom.child_nodes[2].getnext() is self.dom.child_nodes[0])
+            self.failUnless(self.dom.child_nodes[1].getnext() is self.dom.child_nodes[2])
+            self.failUnless(self.dom.child_nodes[0].getnext() is self.dom.child_nodes[1])
+
     class APICreateTestCase:
         def setUp(self):
             self.a = self.module.Element('a')
 
         def test_create(self):
             self.failUnlessEqual('a',self.module.Element('a').tag)
+        
+        def test_get_parent(self):
+            test_node_a = self.module.Element('a')
+            test_node_b = self.module.Element('b')
+            test_node_a.append(test_node_b)
+            self.failUnless(test_node_b.parent is test_node_a)
+            self.failUnless(test_node_b.getparent() is test_node_a)
+
+        def test_create_with_attributes(self):
+            test_node = self.module.Element('a',awesome=True)
+            self.failUnless(test_node.get('awesome'))
+            
+        def test_create_text(self):
+            test_node = self.module.Element('a')
+            test_node.text = "Ello!"
+            self.failUnlessEqual(test_node.text,"Ello!")
+            self.module.to_string(test_node)
 
         def test_append(self):
             a = self.module.Element('a')
