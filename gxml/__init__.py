@@ -7,34 +7,48 @@ import base
 available_apis = []
 
 #apis in order of "awesomeness" 
-
-#attempt to import minidom first
-try:
-    import xml.dom.minidom
-    import minidom
-    #define it's api
-    gxml = minidom.minidom
-    #list it as an available api
-    Element = minidom.Element
-    to_string = minidom.to_string
-    from_string = minidom.from_string
-    available_apis.append(['minidom',minidom])
-except ImportError:
-    pass
-
 try:
    import elementtree
    import elemtree
-   gxml = elemtree.elemtree
-   Element = elemtree.Element
+   
+   class gxml(elemtree.elemtree):
+      __api__ = elemtree.elemtree
    to_string = elemtree.to_string
-   from_string = elemtree.from_string
+
    available_apis.append(['elementtree',elemtree])
 except ImportError:
    pass
 
+try:
+    import xml.dom.minidom
+    import minidom
+    #define it's api
+    class gxml(minidom.minidom):
+        __api__ = minidom.minidom
+    #list it as an available api
+    to_string = minidom.to_string
+    available_apis.append(['minidom',minidom])
+
+except ImportError:
+    pass
+
+
+
 if not gxml:
     raise ImportError("No Supported XML library found!")
+
+ElementTree = gxml
+
+def Element(tag):
+    t = gxml()
+    t.from_string(tag)
+    return t
+
+def from_string(xml_str):
+    t = gxml()
+    t.from_string(xml_str)
+    return t
+
 
 def clone(node):
     t = gxml()

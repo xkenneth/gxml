@@ -1,7 +1,6 @@
 import unittest
 import gxml
-
-test_suite = unittest.TestSuite()
+import new
 
 first = True
 
@@ -90,19 +89,15 @@ for name, api in gxml.available_apis:
             self.failUnlessEqual(self.a.keys(),['this','a'])
             
             
-    exec("class %sParseTestCase(APIParseTestCase,unittest.TestCase): pass" % name)
-    exec("%sParseTestCase.api = %s" % (name, api.__name__ + "." + api.__name__.split('.')[-1]))
-    exec("%sParseTestCase.module = api" % name)
+    test_case_name = '%sParseTestCase' % name
+    locals()[test_case_name] = new.classobj(test_case_name, (APIParseTestCase, unittest.TestCase), {})
+    locals()[test_case_name].api = getattr(api,api.__name__.split('.')[-1])
+    locals()[test_case_name].module = api
 
-    exec("class %sCreateTestCase(APICreateTestCase,unittest.TestCase): pass" % name)
-    exec("%sCreateTestCase.api = %s" % (name, api.__name__ + "." + api.__name__.split('.')[-1]))
-    exec("%sCreateTestCase.module = api" % name)
-
-    
-
-    #test_suite.addTest(APITestCase('test_get_root_tag'))
-    #test_suite.addTest(APITestCase('test_root_child_tags'))
-    #test_suite.addTest(APITestCase('test_this'))
+    test_case_name = '%sCreateTestCase' % name
+    locals()[test_case_name] = new.classobj(test_case_name, (APICreateTestCase, unittest.TestCase), {})
+    locals()[test_case_name].api = getattr(api,api.__name__.split('.')[-1])
+    locals()[test_case_name].module = api
 
 unittest.main()
 

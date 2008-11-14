@@ -50,7 +50,7 @@ class elemtree(tag_node):
         children = []
         #find them
         for child in self.node.getchildren():
-            children.append(elemtree(child,self))
+            children.append(self.__class__(child,self))
 
         #save them
         self.children = children

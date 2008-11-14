@@ -56,7 +56,7 @@ class minidom(tag_node):
         #find them
         for child in self.node.childNodes:
             if not is_junk(child):
-                children.append(minidom(child,self))
+                children.append(self.__class__(child,self))
 
         #save them
         self.children = children
