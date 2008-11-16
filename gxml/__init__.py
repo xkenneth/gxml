@@ -37,8 +37,6 @@ try:
 except ImportError:
    pass
 
-
-
 if not gxml:
     raise ImportError("No Supported XML library found!")
 
@@ -53,8 +51,8 @@ def clone(node):
     t = gxml()
     return t.from_string(to_string(node))
 
-def is_element(element):
-    return hasattr(element,'node') or isinstance(element,base.node)    
+def is_element(node):
+    return hasattr(node,'node') or isinstance(node,base.tag_node)    
 
 def SubElement(parent, child_tag):
     """Create a SubElement of child_tag and append it to the parent."""
